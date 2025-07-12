@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.example.java;
+package org.firstinspires.ftc.teamcode.example.java.Examples;
 
 import com.qualcomm.robotcore.hardware.Servo;
 import com.rowanmcalpin.nextftc.core.Subsystem;
@@ -6,10 +6,10 @@ import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.ftc.OpModeData;
 import com.rowanmcalpin.nextftc.ftc.hardware.ServoToPosition;
 
-public class Claw extends Subsystem {
+public class Example_Claw extends Subsystem {
     // BOILERPLATE
-    public static final Claw INSTANCE = new Claw();
-    private Claw() { }
+    public static final Example_Claw INSTANCE = new Example_Claw();
+    private Example_Claw() { }
 
     // USER CODE
     public Servo servo;

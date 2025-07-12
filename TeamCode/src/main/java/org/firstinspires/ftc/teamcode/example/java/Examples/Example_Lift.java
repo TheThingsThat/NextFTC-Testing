@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.example.java;
+package org.firstinspires.ftc.teamcode.example.java.Examples;
 
 import com.rowanmcalpin.nextftc.core.Subsystem;
 import com.rowanmcalpin.nextftc.core.command.Command;
@@ -8,10 +8,10 @@ import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.RunToPosition;
 
 
-public class Lift extends Subsystem {
+public class Example_Lift extends Subsystem {
     // BOILERPLATE
-    public static final Lift INSTANCE = new Lift();
-    private Lift() { }
+    public static final Example_Lift INSTANCE = new Example_Lift();
+    private Example_Lift() { }
 
     // USER CODE
     public MotorEx motor;
