@@ -1,10 +1,12 @@
-package org.firstinspires.ftc.teamcode.example.java.Config;
+package org.firstinspires.ftc.teamcode.Config.Subsystems;
 
 import com.rowanmcalpin.nextftc.core.Subsystem;
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.control.controllers.PIDFController;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.RunToPosition;
+
+import org.firstinspires.ftc.teamcode.Config.RobotConstants;
 
 public class Lift extends Subsystem{
     public static final Lift INSTANCE = new Lift();

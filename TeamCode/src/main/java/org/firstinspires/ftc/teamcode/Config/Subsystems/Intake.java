@@ -1,11 +1,12 @@
-package org.firstinspires.ftc.teamcode.example.java.Config;
+package org.firstinspires.ftc.teamcode.Config.Subsystems;
 
 import com.qualcomm.robotcore.hardware.Servo;
 import com.rowanmcalpin.nextftc.core.Subsystem;
 import com.rowanmcalpin.nextftc.core.command.Command;
-import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
 import com.rowanmcalpin.nextftc.ftc.OpModeData;
 import com.rowanmcalpin.nextftc.ftc.hardware.ServoToPosition;
+
+import org.firstinspires.ftc.teamcode.Config.RobotConstants;
 
 public class Intake extends Subsystem{
 

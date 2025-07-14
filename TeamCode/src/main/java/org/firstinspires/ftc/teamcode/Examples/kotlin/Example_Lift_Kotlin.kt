@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.example.kotlin
+package org.firstinspires.ftc.teamcode.Examples.kotlin
 
 import com.rowanmcalpin.nextftc.core.Subsystem
 import com.rowanmcalpin.nextftc.core.command.Command
@@ -7,7 +7,7 @@ import com.rowanmcalpin.nextftc.core.control.controllers.PIDFController
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.RunToPosition
 
-object Lift: Subsystem() {
+object Example_Lift_Kotlin: Subsystem() {
     lateinit var motor: MotorEx
 
     val controller = PIDFController(0.005, 0.0, 0.0)

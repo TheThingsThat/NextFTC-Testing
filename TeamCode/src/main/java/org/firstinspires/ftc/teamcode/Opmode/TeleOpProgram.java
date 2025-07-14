@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.example.java.Opmode;
+package org.firstinspires.ftc.teamcode.Opmode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -8,13 +8,16 @@ import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
 import com.rowanmcalpin.nextftc.core.command.utility.delays.Delay;
 import com.rowanmcalpin.nextftc.pedro.DriverControlled;
 import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
-import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 
-import org.firstinspires.ftc.teamcode.example.java.Config.Intake;
-import org.firstinspires.ftc.teamcode.example.java.Config.Lift;
+import org.firstinspires.ftc.teamcode.Config.Commands.ToBasket;
+import org.firstinspires.ftc.teamcode.Config.Commands.ToIntake;
+import org.firstinspires.ftc.teamcode.Config.Commands.ToSub;
+import org.firstinspires.ftc.teamcode.Config.Commands.ToDeposit;
+import org.firstinspires.ftc.teamcode.Config.Subsystems.Intake;
+import org.firstinspires.ftc.teamcode.Config.Subsystems.Lift;
 
-@TeleOp (name = "Pedro TeleOp")
+@TeleOp (name = "NextFTC TeleOp")
 public class TeleOpProgram extends PedroOpMode {
 
     public TeleOpProgram() {
@@ -27,8 +30,6 @@ public class TeleOpProgram extends PedroOpMode {
     public MotorEx backRightMotor;
 
     public MotorEx[] motors;
-
-    public Command driverControlled;
 
     @Override
     public void onInit() {
@@ -47,11 +48,56 @@ public class TeleOpProgram extends PedroOpMode {
 
     @Override
     public void onStartButtonPressed() {
+
         CommandManager.INSTANCE.scheduleCommand(new DriverControlled(gamepadManager.getGamepad1(), true));
 
-        // W/ SAMPLE TRAVEL STATE
+        // CLAW VERTICAL
+        gamepadManager.getGamepad1().getDpadUp().setPressedCommand(
+                Intake.INSTANCE::clawVer
+        );
+        // CLAW HORIZONTAL
         gamepadManager.getGamepad1().getTriangle().setPressedCommand(
-                () -> new SequentialGroup( // TODO: check if '()' syntax is valid instead of 'value'
+                Intake.INSTANCE::clawHor
+        );
+
+        // ToIntake
+        gamepadManager.getGamepad1().getLeftTrigger().setPressedCommand(
+                value -> ToIntake.move(Intake.INSTANCE, Lift.INSTANCE)
+        );
+        // ToBasket
+        gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(
+                () -> ToBasket.move(Intake.INSTANCE, Lift.INSTANCE)
+        );
+        // ToDeposit
+        gamepadManager.getGamepad1().getRightBumper().setPressedCommand(
+                () -> ToDeposit.move(Intake.INSTANCE, Lift.INSTANCE)
+        );
+        // ToSub
+        gamepadManager.getGamepad1().getRightTrigger().setPressedCommand(
+                value -> ToSub.move(Intake.INSTANCE, Lift.INSTANCE)
+        );
+
+
+
+        // –––––––––– TeleOp Independent Command Implementation (OLD) ––––––––––
+        /*
+
+        // ToIntake
+        gamepadManager.getGamepad1().getLeftTrigger().setPressedCommand(
+                value -> new SequentialGroup(
+                        new ParallelGroup(
+                                Lift.INSTANCE.extendLeftLift(),
+                                Lift.INSTANCE.extendRightLift()
+                        ),
+                        new ParallelGroup(
+                                Intake.INSTANCE.intakeDown1(),
+                                Intake.INSTANCE.intakeDown2()
+                        )
+                )
+        );
+        // ToBasket
+        gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(
+                () -> new SequentialGroup(
                         Intake.INSTANCE.closeClaw(),
                         new ParallelGroup(
                                 new ParallelGroup(
@@ -67,9 +113,9 @@ public class TeleOpProgram extends PedroOpMode {
                         Intake.INSTANCE.clawVer()
                 )
         );
-        // DEPOSIT STATE
-        gamepadManager.getGamepad1().getCircle().setPressedCommand(
-                () -> new SequentialGroup( // TODO: check if '()' syntax is valid instead of 'value'
+        // ToDeposit
+        gamepadManager.getGamepad1().getRightBumper().setPressedCommand(
+                () -> new SequentialGroup(
                         new ParallelGroup(
                                 Lift.INSTANCE.extendLeftLift(),
                                 Lift.INSTANCE.extendRightLift()
@@ -80,9 +126,9 @@ public class TeleOpProgram extends PedroOpMode {
                         )
                 )
         );
-        // W/O SAMPLE MOVE STATE
-        gamepadManager.getGamepad1().getX().setPressedCommand(
-                () -> new SequentialGroup( // TODO: check if '()' syntax is valid instead of 'value'
+        // ToSub
+        gamepadManager.getGamepad1().getRightTrigger().setPressedCommand(
+                value -> new SequentialGroup(
                         Intake.INSTANCE.openClaw(),
                         new Delay(0.2),
                         new ParallelGroup(
@@ -94,19 +140,6 @@ public class TeleOpProgram extends PedroOpMode {
                         Lift.INSTANCE.pivotDown()
                 )
         );
-        // INTAKE FROM SUB STATE
-        gamepadManager.getGamepad1().getSquare().setPressedCommand(
-                () -> new SequentialGroup( // TODO: check if '()' syntax is valid instead of 'value'
-                        new ParallelGroup(
-                            Lift.INSTANCE.extendLeftLift(),
-                            Lift.INSTANCE.extendRightLift()
-                    ),
-                        new ParallelGroup(
-                            Intake.INSTANCE.intakeDown1(),
-                            Intake.INSTANCE.intakeDown2()
-                    )
-                )
-        );
-
+         */
     }
 }

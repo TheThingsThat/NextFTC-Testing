@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.example.kotlin
+package org.firstinspires.ftc.teamcode.Examples.kotlin
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
 import com.rowanmcalpin.nextftc.core.command.Command
@@ -8,18 +8,18 @@ import com.rowanmcalpin.nextftc.core.command.utility.delays.Delay
 import com.rowanmcalpin.nextftc.ftc.NextFTCOpMode
 
 @Autonomous(name = "NextFTC Autonomous Program Kotlin")
-class AutonomousProgram: NextFTCOpMode(Claw, Lift) {
+class AutonomousProgram: NextFTCOpMode(Example_Claw_Kotlin, Example_Lift_Kotlin) {
     val firstRoutine: Command
         get() = SequentialGroup(
-            Lift.toHigh,
+            Example_Lift_Kotlin.toHigh,
             ParallelGroup(
-                Lift.toMiddle,
-                Claw.close
+                Example_Lift_Kotlin.toMiddle,
+                Example_Claw_Kotlin.close
             ),
             Delay(0.5),
             ParallelGroup(
-                Claw.open,
-                Lift.toLow
+                Example_Claw_Kotlin.open,
+                Example_Lift_Kotlin.toLow
             )
         )
 

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.example.java.Examples;
+package org.firstinspires.ftc.teamcode.Examples.java.Examples;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.rowanmcalpin.nextftc.core.command.Command;
